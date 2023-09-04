@@ -7,6 +7,7 @@ use App\Models\SubjectModel;
 use App\Models\TeacherClassSubject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherClasSubjectController extends Controller
 {
@@ -35,7 +36,7 @@ class TeacherClasSubjectController extends Controller
     }
     public function update(Request $request)
     {
-    //    ClassSubjectModel::deleteSubject($request->class_id);
+       TeacherClassSubject::deleteClassSubject($request->teacher_id);
         if (!empty($request->class_id)) {
             foreach ($request->class_id as $class_id) {
 
@@ -65,5 +66,58 @@ class TeacherClasSubjectController extends Controller
             }
         }
         return redirect('admin/teacher_class_subject/list')->with('success', 'Subject succesfuly assign to class');
+    }
+
+    //teacher side
+      public function assign_class_subject()
+    {
+        $id = Auth::user()->id;
+        $getRecord = User::getSingle($id);
+        if (!empty($getRecord)) {
+            $data['getRecord'] = $getRecord;
+            $data['getAssignSubjectId'] = TeacherClassSubject::getAssignSubjectId($getRecord->id);
+            $data['getAssignClassId'] = TeacherClassSubject::getAssignClassId($getRecord->id);
+            $data['getClass'] = ClassModel::getClass();
+            $data['getSubject'] = SubjectModel::getSubject();
+            // $data['header_title'] = "Edit Assign Subject";
+            $data['getTeacher'] = User::getTeacher();
+            return view('admin.teacher_class_subject.edit', $data);
+        } else {
+            abort(404);
+        }
+    }
+    public function update_assign_class_subject(Request $request)
+    {
+        // dd($request->all());
+       TeacherClassSubject::deleteClassSubject($request->teacher_id);
+        if (!empty($request->class_id)) {
+            foreach ($request->class_id as $class_id) {
+
+                $getAlreadyFirst = TeacherClassSubject::getAlreadyFirstClass($request->teacher_id, $class_id);
+                if (!empty($getAlreadyFirstClass)) {
+                    $getAlreadyFirst->save();
+                } else {
+                    $save = new TeacherClassSubject();
+                    $save->teacher_id= $request->teacher_id;
+                    $save->class_id = $class_id;
+                    $save->save();
+                }
+            }
+        }
+        if (!empty($request->subject_id)) {
+            foreach ($request->subject_id as $subject_id) {
+
+                $getAlreadyFirst = TeacherClassSubject::getAlreadyFirst($request->teacher_id, $subject_id);
+                if (!empty($getAlreadyFirst)) {
+                    $getAlreadyFirst->save();
+                } else {
+                    $save = new TeacherClassSubject();
+                    $save->teacher_id= $request->teacher_id;
+                    $save->subject_id = $subject_id;
+                    $save->save();
+                }
+            }
+        }
+        return redirect('teacher/assign_class_subject')->with('success', 'Subject succesfuly assign to class');
     }
 }

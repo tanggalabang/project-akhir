@@ -26,4 +26,8 @@ class TeacherClassSubject extends Model
     {
         return self::where('teacher_id', '=', $id)->get();
     }
+        static public function deleteClassSubject($teacher_id)
+    {
+        return self::where('teacher_id', '=', $teacher_id)->delete();
+    }
 }

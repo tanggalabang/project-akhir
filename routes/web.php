@@ -59,7 +59,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/class/edit/{id}', [ClassController::class, 'edit']);
     Route::post('/admin/class/edit/{id}', [ClassController::class, 'update']);
     Route::get('/admin/class/delete/{id}', [ClassController::class, 'delete']);
- 
+
     Route::get('/admin/subject/list', [SubjectController::class, 'list']);
     Route::get('/admin/subject/add', [SubjectController::class, 'add']);
     Route::post('/admin/subject/add', [SubjectController::class, 'insert']);
@@ -86,6 +86,9 @@ Route::group(['middleware' => 'admin'], function () {
 
 Route::group(['middleware' => 'teacher'], function () {
     Route::get('/teacher/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('/teacher/assign_class_subject', [TeacherClasSubjectController::class, 'assign_class_subject']);
+    Route::post('/teacher/assign_class_subject', [TeacherClasSubjectController::class, 'update_assign_class_subject']);
 
     Route::get('/teacher/change_password', [UserController::class, 'change_password']);
     Route::post('/teacher/change_password', [UserController::class, 'update_change_password']);

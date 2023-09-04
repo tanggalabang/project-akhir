@@ -21,7 +21,7 @@ class AuthController extends Controller
         return redirect('teacher/dashboard');
       } else if (Auth::user()->user_type == 3) {
         return redirect('student/dashboard');
-      } 
+      }
     }
     return view('auth.login');
   }
@@ -74,9 +74,9 @@ class AuthController extends Controller
   //   }
   // }
 
-  // public function logout()
-  // {
-  //   Auth::logout();
-  //   return redirect(url(''));
-  // }
+  public function logout()
+  {
+    Auth::logout();
+    return redirect(url(''));
+  }
 }

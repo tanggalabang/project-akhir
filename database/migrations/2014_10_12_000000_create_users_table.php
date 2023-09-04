@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->default(Hash::make(123456));
             $table->tinyInteger('user_type')->default(1)->comment('1:admin, 2:teacher, 3:student');
+            $table->string('nis')->unique()->nullable();
+            $table->string('name');
+            $table->enum('gender', ['L', 'P'])->nullable();
             $table->integer('class_id')->nullable();
+            $table->tinyInteger('is_delete')->default(0);
             $table->timestamps();
         });
     }

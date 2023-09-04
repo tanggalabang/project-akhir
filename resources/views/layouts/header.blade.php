@@ -141,7 +141,7 @@
                               class="nav-link @if (Request::segment(2) == 'account') active @endif">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
-                                 My Account 
+                                 My Account
                               </p>
                           </a>
                       </li>
@@ -159,7 +159,7 @@
                               class="nav-link @if (Request::segment(2) == 'teacher') active @endif">
                               <i class="nav-icon far fa-user"></i>
                               <p>
-                                Teacher 
+                                Teacher
                               </p>
                           </a>
                       </li>
@@ -168,7 +168,7 @@
                               class="nav-link @if (Request::segment(2) == 'student') active @endif">
                               <i class="nav-icon far fa-user"></i>
                               <p>
-                                 Student 
+                                 Student
                               </p>
                           </a>
                       </li>
@@ -177,7 +177,7 @@
                               class="nav-link @if (Request::segment(2) == 'parent') active @endif">
                               <i class="nav-icon far fa-user"></i>
                               <p>
-                                Parent 
+                                Parent
                               </p>
                           </a>
                       </li> --}}
@@ -204,7 +204,7 @@
                               class="nav-link @if (Request::segment(2) == 'teacher_class_subject') active @endif">
                               <i class="nav-icon far fa-user"></i>
                               <p>
-                                 Teacher Class Subject 
+                                 Teacher Class Subject
                               </p>
                           </a>
                       </li>
@@ -231,16 +231,25 @@
                               class="nav-link @if (Request::segment(2) == 'dashboard') active @endif">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
-                                  dashboard
+                                  Dashboard
                               </p>
                           </a>
                       </li>
                       <li class="nav-item">
+                          <a href="{{ url('teacher/assign_class_subject') }}"
+                              class="nav-link @if (Request::segment(2) == 'assign_class_subject') active @endif">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>
+                                 Assign Class Subject
+                              </p>
+                          </a>
+                      </li>
+                      {{-- <li class="nav-item">
                           <a href="{{ url('teacher/account') }}"
                               class="nav-link @if (Request::segment(2) == 'account') active @endif">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
-                                 My Account 
+                                 My Account
                               </p>
                           </a>
                       </li>
@@ -252,7 +261,7 @@
                                   change Password
                               </p>
                           </a>
-                      </li>
+                      </li> --}}
                   @elseif(Auth::user()->user_type == 3)
                       <li class="nav-item">
                           <a href="{{ url('student/dashboard') }}"
@@ -268,7 +277,7 @@
                               class="nav-link @if (Request::segment(2) == 'my_subject') active @endif">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
-                                 My Subject 
+                                 My Subject
                               </p>
                           </a>
                       </li>
@@ -277,7 +286,7 @@
                               class="nav-link @if (Request::segment(2) == 'account') active @endif">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
-                                 My Account 
+                                 My Account
                               </p>
                           </a>
                       </li>
@@ -305,7 +314,7 @@
                               class="nav-link @if (Request::segment(2) == 'my_student') active @endif">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
-                                 My Student 
+                                 My Student
                               </p>
                           </a>
                       </li>
@@ -314,7 +323,7 @@
                               class="nav-link @if (Request::segment(2) == 'account') active @endif">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
-                                 My Account 
+                                 My Account
                               </p>
                           </a>
                       </li>
