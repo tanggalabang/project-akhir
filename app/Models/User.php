@@ -169,7 +169,7 @@ class User extends Authenticatable
     {
         $return = self::select('users.*')
             ->where('users.user_type', '=', 2);
-            // ->where('users.is_delete', '=', 0);
+        // ->where('users.is_delete', '=', 0);
 
         // if (!empty(Request::get('name'))) {
         //     $return = $return->where('users.name', 'like', '%' . Request::get('name') . '%');
